@@ -89,7 +89,7 @@
     map)
   "Keymap for `one-mode'.")
 
-(define-derived-mode one-mode fundamental-mode "dictionary"
+(define-derived-mode one-mode fundamental-mode "one"
   "Major mode to render results.
 \\{one-mode-map}.
 Turning on Text mode runs the normal hook `one-mode-hook'."

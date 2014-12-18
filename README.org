@@ -13,7 +13,7 @@ sources, currently the following are supported:
 To install, follow the usual steps:
 - Clone this repository
 - Add this directory to your ~load-path~
-- Issue ~(require one)~
+- Issue ~(require 'one)~
 This should give you access to the ~one-*~ functions,
 i.e. 
 - ~one-hackernews~
