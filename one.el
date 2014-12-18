@@ -1,8 +1,8 @@
-;;; one.el --- "M-x one" to read them all
+;;; one.el --- "M-x one-*" to read them all
 
-;; Copyright (C) 2012  Lincoln de Sousa <lincoln@comum.org>
-;; Copyright (C) 2014  Chunyang Xu <xuchunyang56@gmail.com>
+;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>
 
+;; Author: Chunyang Xu
 ;; Keywords: hackernews, zhihu, v2ex, sbbs
 ;; Version: 0.1
 
@@ -44,9 +44,13 @@
   :prefix "one-")
 
 (defface one-link-face
-  '((t (:foreground "green")))
+  '((t
+     (:underline
+      (:color foreground-color :style line)
+      :foreground "#6699cc")))
   "Face used for links to articles"
   :group 'one)
+
 
 (defvar hackernews-url "http://api.ihackernews.com/page"
   "The url to grab the list of news from Hacker News")
@@ -196,6 +200,13 @@ comments."
     (switch-to-buffer "*sbbs*")
     (setq font-lock-mode nil)
     (use-local-map nil)
+    (princ "SBBS -- 虎踞龙蟠 BBS -- http://bbs.seu.edu.cn")
+    (princ "
+ ____  ____  ____ ____
+/ ___|| __ )| __ ) ___|
+\\___ \\|  _ \\|  _ \\___ \\
+ ___) | |_) | |_) |__) |
+|____/|____/|____/____/\n\n")
     (mapcar #'sbbs-render-post
 	    (cdr (assoc 'topics results)))))
 
@@ -231,6 +242,13 @@ comments."
     (switch-to-buffer "*hackernews*")
     (setq font-lock-mode nil)
     (use-local-map nil)
+    (princ "Hacker News -- https://news.ycombinator.com")
+    (princ "
+ _   _            _               _   _
+| | | | __ _  ___| | _____ _ __  | \\ | | _____      _____
+| |_| |/ _` |/ __| |/ / _ \\ '__| |  \\| |/ _ \\ \\ /\\ / / __|
+|  _  | (_| | (__|   <  __/ |    | |\\  |  __/\\ V  V /\\__ \\
+|_| |_|\\__,_|\\___|_|\\_\\___|_|    |_| \\_|\\___| \\_/\\_/ |___/\n\n")
     (mapcar #'hackernews-render-post
             (cdr (assoc 'items results)))))
 
@@ -240,6 +258,7 @@ comments."
   "Render a single post to the current buffer
 Add the post title as a link, and print the points and number of
 comments."
+  (princ (one-space-fill "¶" 3))
   (one-create-link-in-buffer
    (one-encoding (cdr (assoc 'title post)))
    (cdr (assoc 'share_url post)))
@@ -251,6 +270,14 @@ comments."
     (switch-to-buffer "*zhihu*")
     (setq font-lock-mode nil)
     (use-local-map nil)
+    (princ "ZhiHu Daily -- 知乎日报 -- http://daily.zhihu.com")
+    (princ "
+ ______     _ _   _
+|__  / |__ (_) | | |_   _
+  / /| '_ \\| | |_| | | | |
+ / /_| | | | |  _  | |_| |
+/____|_| |_|_|_| |_|\\__,_|\n\n")
+
     (mapcar #'zhihu-render-post
 	    (cdr (assoc 'news results)))))
 
@@ -262,9 +289,18 @@ comments."
     (switch-to-buffer "*v2ex*")
     (setq font-lock-mode nil)
     (use-local-map nil)
+    (princ "V2EX -- http://www.v2ex.com")
+    (princ "
+__     ______  _______  __
+\\ \\   / /___ \\| ____\\ \\/ /
+ \\ \\ / /  __) |  _|  \\  /
+  \\ V /  / __/| |___ /  \\
+   \\_/  |_____|_____/_/\\_\\\n\n")
+
     (let ((c (length results)))
       (dotimes (n c)
         (let ((item-nth (elt results n)))
+          (princ (one-space-fill "¶" 3))
           (one-create-link-in-buffer
            (one-encoding (cdr (assoc 'title item-nth)))
            (cdr (assoc 'url item-nth)))
