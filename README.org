@@ -1,0 +1,32 @@
+#+Title: one.el -- M-x one-* to read various news sources
+
+* Intro
+~one.el~  is a very simple Emacs extention for reading various news
+sources, currently the following are supported:
+1. Hacker News
+2. Zhihu Dailiy (知乎日报)
+3. V2EX
+4. SBBS (Southeast University BBS, 东南大学虎踞龙蟠 BBS)
+
+~one.el~ is inspired by [[http://one.hackplan.com/][One App]] (一览).
+* Installation
+To install, follow the usual steps:
+- Clone this repository
+- Add this directory to your ~load-path~
+- Issue ~(require one)~
+This should give you access to the ~one-*~ functions,
+i.e. 
+- ~one-hackernews~
+- ~one-zhihu~
+- ~one-v2ex~
+- ~one-sbbs~
+
+* ScreenShots
+- Hacker News ~one-hackernews~
+[[http://i.imgur.com/S8pe0IS.png]]
+- Zhihu Dailiy ~one-zhihu~
+[[http://i.imgur.com/yOh1xGR.png]]
+- V2EX ~one-v2ex~
+[[http://i.imgur.com/6TK5OiM.png]]
+- SBBS ~one-sbbs~
+[[http://i.imgur.com/LZ2nKY0.png]]
