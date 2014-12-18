@@ -1,4 +1,4 @@
-#+Title: one.el -- M-x one-* to read various news sources
+#+Title: one.el -- =M-x one-*= to read various news sources
 
 * Intro
 ~one.el~  is a very simple Emacs extention for reading various news
