@@ -30,8 +30,7 @@
 ;; 3. V2EX
 ;; 4. SBBS (Southeast University BBS)
 ;;
-;; Notes:
-;; Stay with Emacs (a.k.a. Esc-Meta-Alt-Ctrl-Shift) and have fun!
+;; Stay with Emacs and have fun!
 
 ;;; Code:
 
@@ -67,10 +66,10 @@
     ": Navigate"
     "    "
     (:propertize "RET" face mode-line-buffer-id)
-    ": View question"
-    "    "
-    (:propertize "v" face mode-line-buffer-id)
     ": Visit externally"
+    "    "
+    (:propertize "t" face mode-line-buffer-id)
+    ": Visit"
     "    "
     (:propertize "q" face mode-line-buffer-id)
     ": Quit")
@@ -79,8 +78,6 @@
 (defvar one-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map "q" 'bury-buffer)
-    (define-key map "RET" 'open-url-within-emacs)
-    (define-key map "v" 'open-url-external)
     ;; Movement
     (define-key map "n" 'next-line)
     (define-key map "p" 'previous-line)
@@ -138,7 +135,7 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
                 (map (make-sparse-keymap)))
     (define-key map (kbd "<RET>")
       #'(lambda (e) (interactive "p") (browse-url url)))
-    (define-key map (kbd "t")    ;FIXME: use 'eww', seems not work yet
+    (define-key map (kbd "t")
       #'(lambda (e) (interactive "p") (eww-browse-url url)))
     (define-key map (kbd "<down-mouse-1>")
       #'(lambda (e) (interactive "p") (browse-url url)))
@@ -182,8 +179,8 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
   "Render a single post to the current buffer
 Add the post title as a link, and print the points and number of
 comments."
-  (princ (sbbs-space-fill
-          (format "[%s]" (cdr (assoc 'read post))) 6))
+  (princ (one-space-fill
+          (format "[%s]" (cdr (assoc 'read post))) 8))
   (one-create-link-in-buffer
    (one-encoding (cdr (assoc 'title post)))
    ;; TODO: use nForum
@@ -218,7 +215,7 @@ comments."
   "Render a single post to the current buffer
 Add the post title as a link, and print the points and number of
 comments."
-  (princ (hackernews-space-fill
+  (princ (one-space-fill
           (format "[%s]" (cdr (assoc 'points post))) 6))
   (one-create-link-in-buffer
    (one-encoding (cdr (assoc 'title post)))
@@ -264,12 +261,12 @@ comments."
   (with-output-to-temp-buffer "*v2ex*"
     (switch-to-buffer "*v2ex*")
     (setq font-lock-mode nil)
-    (use-local-map v2ex-map)
+    (use-local-map nil)
     (let ((c (length results)))
       (dotimes (n c)
         (let ((item-nth (elt results n)))
-          (v2ex-create-link-in-buffer
-           (v2ex-encoding (cdr (assoc 'title item-nth)))
+          (one-create-link-in-buffer
+           (one-encoding (cdr (assoc 'title item-nth)))
            (cdr (assoc 'url item-nth)))
           (princ (format " (%s replies)" (cdr (assoc 'replies item-nth))))
           (princ "\n"))))))
