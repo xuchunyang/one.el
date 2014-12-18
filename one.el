@@ -1,8 +1,9 @@
-;;; one.el --- "M-x one-*" to read them all
+;;; one.el --- "M-x one-*" to read various news sources
 
+;; Copyright (C) 2012  Lincoln de Sousa <lincoln@comum.org>
 ;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>
 
-;; Author: Chunyang Xu
+;; Author: Lincoln de Sousa, Chunyang Xu
 ;; Keywords: hackernews, zhihu, v2ex, sbbs
 ;; Version: 0.1
 
@@ -21,8 +22,8 @@
 
 ;;; Commentary:
 ;;
-;; This is a simple extention to fetch some news sources, inspired by
-;; One App (http://one.hackplan.com/).
+;; This is a simple extention to view some news sources, inspired by
+;; One App (qhttp://one.hackplan.com/).
 ;;
 ;; Currently, the following news sources are supported:
 ;; 1. Hacker News
