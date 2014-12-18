@@ -61,6 +61,40 @@
 (defvar sbbs-url "http://bbs.seu.edu.cn/api/hot/topten.js"
   "The url to grab the list of news from SBBS")
 
+(defvar one-mode-header-line
+  '("    "
+    (:propertize "n p" face mode-line-buffer-id)
+    ": Navigate"
+    "    "
+    (:propertize "RET" face mode-line-buffer-id)
+    ": View question"
+    "    "
+    (:propertize "v" face mode-line-buffer-id)
+    ": Visit externally"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
+  "Header-line used in `one-mode'.")
+
+(defvar one-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "q" 'bury-buffer)
+    (define-key map "RET" 'open-url-within-emacs)
+    (define-key map "v" 'open-url-external)
+    ;; Movement
+    (define-key map "n" 'next-line)
+    (define-key map "p" 'previous-line)
+    map)
+  "Keymap for `one-mode'.")
+
+(define-derived-mode one-mode fundamental-mode "dictionary"
+  "Major mode to render results.
+\\{one-mode-map}.
+Turning on Text mode runs the normal hook `one-mode-hook'."
+  (setq header-line-format one-mode-header-line)
+  (message "one-mode: init"))
+
+
 ;; TODO: Mode (UI and Keymap)
 
 ;;; Interactive functions
@@ -137,7 +171,10 @@
          (zhihu-format-results results))
         ((string= news-source "v2ex")
          (v2ex-format-results results))
-        (t (message "news-source not implement yet"))))
+        (t (error "news-source not implement yet")))
+  (unless (eq major-mode 'one-mode)
+    (one-mode)))
+
 
 ;;; SBBS specific
 
