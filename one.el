@@ -106,21 +106,25 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
     ('error
      (message (format "Bad news, bro: %s" (car (cdr ex)))))))
 
+;;;###autoload
 (defun one-sbbs ()
   "The entry point of SBBS client"
   (interactive)
   (one-entry "sbbs" sbbs-url))
 
+;;;###autoload
 (defun one-hackernews ()
   "The entry point of Hacker News client"
   (interactive)
   (one-entry "hackernews" hackernews-url))
 
+;;;###autoload
 (defun one-zhihu ()
   "The entry point of Zhihu Daily client"
   (interactive)
   (one-entry "zhihu" zhihu-url))
 
+;;;###autoload
 (defun one-v2ex ()
   "The entry point of V2EX client"
   (interactive)
