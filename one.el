@@ -1,6 +1,6 @@
 ;;; one.el --- "M-x one-*" to read various news sources
 
-;; Copyright (C) 2012  Lincoln de Sousa <lincoln@comum.org>
+;; Copyright (C) 2012 Lincoln de Sousa <lincoln@comum.org>
 ;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>
 
 ;; Author: Lincoln de Sousa, Chunyang Xu
@@ -52,7 +52,6 @@
   "Face used for links to articles"
   :group 'one)
 
-
 (defvar hackernews-url "http://api.ihackernews.com/page"
   "The url to grab the list of news from Hacker News")
 
@@ -96,12 +95,8 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
   (setq header-line-format one-mode-header-line)
   (message "one-mode: init"))
 
-
-;; TODO: Mode (UI and Keymap)
-
 ;;; Interactive functions
 
-;;;###autoload
 (defun one-entry (news-source url)
   "The entry point of every client"
   (condition-case ex
