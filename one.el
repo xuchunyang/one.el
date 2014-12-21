@@ -1,4 +1,4 @@
-;;; one.el --- "M-x one-*" to read various news sources
+;;; one.el --- "M-x one-*" to read several news sources
 
 ;; Copyright (C) 2012 Lincoln de Sousa <lincoln@comum.org>
 ;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>

@@ -1,7 +1,7 @@
-#+Title: one.el -- =M-x one-*= to read various news sources
+#+Title: one.el -- =M-x one-*= to read several news sources
 
 * Intro
-~one.el~  is a very simple Emacs extention for reading various news
+~one.el~  is a very simple Emacs extention for reading several news
 sources, currently the following are supported:
 1. Hacker News
 2. Zhihu Dailiy (知乎日报)
