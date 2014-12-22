@@ -1,12 +1,12 @@
-#+Title: one.el -- =M-x one-*= to read several news sources
+#+Title: =M-x one-*= to read several news sources
 
-* Intro
+* About
 ~one.el~  is a very simple Emacs extention for reading several news
 sources, currently the following are supported:
-1. Hacker News
-2. Zhihu Dailiy (知乎日报)
-3. V2EX
-4. SBBS (Southeast University BBS, 东南大学虎踞龙蟠 BBS)
+- Hacker News
+- Zhihu Dailiy (知乎日报)
+- V2EX
+- SBBS (Southeast University BBS, 东南大学虎踞龙蟠 BBS)
 
 ~one.el~ is inspired by [[http://one.hackplan.com/][One App]] (一览).
 * Installation
