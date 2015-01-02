@@ -107,29 +107,39 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
     ('error
      (message (format "Bad news, bro: %s" (car (cdr ex)))))))
 
+(defun one--goto-first-item (x-pos y-pos)
+  "Move cursor to the first item, denoted by (X-POS, Y-POS)."
+  (goto-char (point-min))
+  (forward-line (1- y-pos))
+  (forward-char x-pos))
+
 ;;;###autoload
 (defun one-sbbs ()
   "The entry point of SBBS client."
   (interactive)
-  (one-entry "sbbs" sbbs-url))
+  (one-entry "sbbs" sbbs-url)
+  (one--goto-first-item 8 8))
 
 ;;;###autoload
 (defun one-hackernews ()
   "The entry point of Hacker News client."
   (interactive)
-  (one-entry "hackernews" hackernews-url))
+  (one-entry "hackernews" hackernews-url)
+  (one--goto-first-item 6 8))
 
 ;;;###autoload
 (defun one-zhihu ()
   "The entry point of Zhihu Daily client."
   (interactive)
-  (one-entry "zhihu" zhihu-url))
+  (one-entry "zhihu" zhihu-url)
+  (one--goto-first-item 3 8))
 
 ;;;###autoload
 (defun one-v2ex ()
   "The entry point of V2EX client."
   (interactive)
-  (one-entry "v2ex" v2ex-url))
+  (one-entry "v2ex" v2ex-url)
+  (one--goto-first-item 3 8))
 
 ;;; UI Functions
 
