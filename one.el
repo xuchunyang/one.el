@@ -174,7 +174,7 @@ And if it isn't, it adds SPACE-characters to the end."
          (zhihu-format-results results))
         ((string= news-source "v2ex")
          (v2ex-format-results results))
-        (t (error "news-source not implement yet")))
+        (t (error (format "news-source %s is not implement yet" news-source))))
   (unless (eq major-mode 'one-mode)
     (one-mode)))
 
