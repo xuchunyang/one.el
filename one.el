@@ -23,7 +23,7 @@
 ;;; Commentary:
 ;;
 ;; This is a simple extention to view some news sources, inspired by
-;; One App (qhttp://one.hackplan.com/).
+;; One App (http://one.hackplan.com/).
 ;;
 ;; Currently, the following news sources are supported:
 ;; 1. Hacker News
@@ -53,16 +53,16 @@
   :group 'one)
 
 (defvar hackernews-url "http://api.ihackernews.com/page"
-  "The url to grab the list of news from Hacker News")
+  "The url to grab the list of news from Hacker News.")
 
 (defvar zhihu-url "http://news.at.zhihu.com/api/1.2/news/latest"
-  "The url to grab the list of news from Zhihu Daily")
+  "The url to grab the list of news from Zhihu Daily.")
 
 (defvar v2ex-url "https://www.v2ex.com/api/topics/hot.json"
-  "The url to grab the list of news from V2EX")
+  "The url to grab the list of news from V2EX.")
 
 (defvar sbbs-url "http://bbs.seu.edu.cn/api/hot/topten.js"
-  "The url to grab the list of news from SBBS")
+  "The url to grab the list of news from SBBS.")
 
 (defvar one-mode-header-line
   '("    "
@@ -108,32 +108,32 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 
 ;;;###autoload
 (defun one-sbbs ()
-  "The entry point of SBBS client"
+  "The entry point of SBBS client."
   (interactive)
   (one-entry "sbbs" sbbs-url))
 
 ;;;###autoload
 (defun one-hackernews ()
-  "The entry point of Hacker News client"
+  "The entry point of Hacker News client."
   (interactive)
   (one-entry "hackernews" hackernews-url))
 
 ;;;###autoload
 (defun one-zhihu ()
-  "The entry point of Zhihu Daily client"
+  "The entry point of Zhihu Daily client."
   (interactive)
   (one-entry "zhihu" zhihu-url))
 
 ;;;###autoload
 (defun one-v2ex ()
-  "The entry point of V2EX client"
+  "The entry point of V2EX client."
   (interactive)
   (one-entry "v2ex" v2ex-url))
 
 ;;; UI Functions
 
 (defun one-create-link-in-buffer (title url)
-  "Insert clickable string inside a buffer"
+  "Insert clickable string inside a buffer."
   (lexical-let ((title title)
                 (url url)
                 (map (make-sparse-keymap)))
@@ -151,8 +151,9 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
       'mouse-face 'highlight))))
 
 (defun one-space-fill (string n)
-  "Makes sure that string is at least n characters long, and
-   if it isn't, it adds SPACE-characters to the end"
+  "Make sure that `string' is at least n characters long.
+
+And if it isn't, it adds SPACE-characters to the end."
   (while (< (length string) n)
     (setf string (concat string " ")))
   (identity string))
