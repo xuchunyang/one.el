@@ -32,7 +32,7 @@
 ;;
 ;; This package is base on https://github.com/clarete/hackernews.el.
 ;;
-;; Stay with Emacs and have fun!
+;; Enjoy!
 
 ;;; Code:
 
