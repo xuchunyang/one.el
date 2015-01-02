@@ -1,9 +1,8 @@
 ;;; one.el --- "M-x one-*" to read several news sources
 
-;; Copyright (C) 2012 Lincoln de Sousa <lincoln@comum.org>
 ;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>
 
-;; Author: Lincoln de Sousa, Chunyang Xu
+;; Author: Chunyang Xu
 ;; Keywords: hackernews, zhihu, v2ex, sbbs
 ;; Version: 0.1
 
@@ -30,6 +29,8 @@
 ;; 2. Zhihu Dailiy
 ;; 3. V2EX
 ;; 4. SBBS (Southeast University BBS)
+;;
+;; This package is base on https://github.com/clarete/hackernews.el.
 ;;
 ;; Stay with Emacs and have fun!
 
