@@ -7,6 +7,7 @@ sources within Emacs. Currently the following are supported:
 - [[http://bbs.seu.edu.cn][东南大学虎踞龙蟠 BBS]]
 
 ~one.el~ is inspired by [[http://one.hackplan.com/][One App | 一览]].
+
 * Installation
 To install, follow the usual steps:
 - Clone this repository
@@ -28,3 +29,8 @@ i.e.
 [[http://i.imgur.com/6TK5OiM.png]]
 - SBBS ~one-sbbs~
 [[http://i.imgur.com/LZ2nKY0.png]]
+
+* Resources
+- [[http://api.ihackernews.com/][Hacker News API]]
+- [[https://www.v2ex.com/p/7v9TEc53][V2EX API 接口]]
+- [[http://bbs.seu.edu.cn/api-documentation/][虎踞龙蟠BBS API]]
