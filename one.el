@@ -99,7 +99,7 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 ;;; Interactive functions
 
 (defun one-entry (news-source url)
-  "The entry point of every client"
+  "The entry point of every client."
   (condition-case ex
       (one-format-results
        news-source
@@ -152,7 +152,7 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
       'mouse-face 'highlight))))
 
 (defun one-space-fill (string n)
-  "Make sure that `string' is at least n characters long.
+  "Make sure that `STRING' is at least N characters long.
 
 And if it isn't, it adds SPACE-characters to the end."
   (while (< (length string) n)
@@ -160,12 +160,12 @@ And if it isn't, it adds SPACE-characters to the end."
   (identity string))
 
 (defun one-encoding (string)
-  "encoding"
+  "Encoding."
   (decode-coding-string
    (encode-coding-string string 'utf-8) 'utf-8))
 
 (defun one-format-results (news-source results)
-  "Create the buffer to render all the info"
+  "Create the buffer to render all the info."
   (cond ((string= news-source "sbbs")
          (sbbs-format-results results))
         ((string= news-source "hackernews")
@@ -197,7 +197,7 @@ comments."
   (princ "\n"))
 
 (defun sbbs-format-results (results)
-  "Create the buffer to render all the info"
+  "Create the buffer to render all the info."
   (with-output-to-temp-buffer "*sbbs*"
     (switch-to-buffer "*sbbs*")
     (setq font-lock-mode nil)
@@ -239,7 +239,7 @@ comments."
   (princ "\n"))
 
 (defun hackernews-format-results (results)
-  "Create the buffer to render all the info"
+  "Create the buffer to render all the info."
   (with-output-to-temp-buffer "*hackernews*"
     (switch-to-buffer "*hackernews*")
     (setq font-lock-mode nil)
@@ -267,7 +267,7 @@ comments."
   (princ "\n"))
 
 (defun zhihu-format-results (results)
-  "Create the buffer to render all the info"
+  "Create the buffer to render all the info."
   (with-output-to-temp-buffer "*zhihu*"
     (switch-to-buffer "*zhihu*")
     (setq font-lock-mode nil)
@@ -286,7 +286,7 @@ comments."
 ;;; V2EX specific
 
 (defun v2ex-format-results (results)
-  "Create the buffer to render all the info"
+  "Create the buffer to render all the info."
   (with-output-to-temp-buffer "*v2ex*"
     (switch-to-buffer "*v2ex*")
     (setq font-lock-mode nil)
