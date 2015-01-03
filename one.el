@@ -3,6 +3,7 @@
 ;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>
 
 ;; Author: Chunyang Xu
+;; URL: https://github.com/xuchunyang/one.el
 ;; Keywords: hackernews, zhihu, v2ex, sbbs
 ;; Version: 0.1
 
