@@ -212,7 +212,7 @@ comments."
     (switch-to-buffer "*sbbs*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (princ "SBBS -- 虎踞龙蟠 BBS -- http://bbs.seu.edu.cn")
+    (one-create-link-in-buffer "SBBS -- 虎踞龙蟠 BBS" "http://bbs.seu.edu.cn" )
     (princ "
  ____  ____  ____ ____
 / ___|| __ )| __ ) ___|
@@ -254,7 +254,7 @@ comments."
     (switch-to-buffer "*hackernews*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (princ "Hacker News -- https://news.ycombinator.com")
+    (one-create-link-in-buffer "Hacker News" "https://news.ycombinator.com")
     (princ "
  _   _            _               _   _
 | | | | __ _  ___| | _____ _ __  | \\ | | _____      _____
@@ -282,7 +282,7 @@ comments."
     (switch-to-buffer "*zhihu*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (princ "ZhiHu Daily -- 知乎日报 -- http://daily.zhihu.com")
+    (one-create-link-in-buffer "ZhiHu Daily -- 知乎日报" "http://daily.zhihu.com")
     (princ "
  ______     _ _   _
 |__  / |__ (_) | | |_   _
@@ -301,7 +301,7 @@ comments."
     (switch-to-buffer "*v2ex*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (princ "V2EX -- http://www.v2ex.com")
+    (one-create-link-in-buffer "V2EX" "http://www.v2ex.com")
     (princ "
 __     ______  _______  __
 \\ \\   / /___ \\| ____\\ \\/ /
