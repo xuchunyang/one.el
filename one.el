@@ -99,15 +99,15 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 
 ;;; Interactive functions
 
-(defun one-entry (news-source url)
+(defun one--entry (news-source url)
   "The entry point of every client."
   (let ((progress-reporter
          (make-progress-reporter (format "Fetching from %s..." news-source)
                                  nil nil)))
     (condition-case ex
-        (one-format-results
+        (one--format-results
          news-source
-         (one-parse (one-retrieve url)))
+         (one--parse (one-－retrieve url)))
       ('error
        (message (format "Bad news, bro: %s" (car (cdr ex))))))
     (progress-reporter-done progress-reporter)))
@@ -122,33 +122,33 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 (defun one-sbbs ()
   "The entry point of SBBS client."
   (interactive)
-  (one-entry "sbbs" sbbs-url)
+  (one--entry "sbbs" sbbs-url)
   (one--goto-first-item 8 8))
 
 ;;;###autoload
 (defun one-hackernews ()
   "The entry point of Hacker News client."
   (interactive)
-  (one-entry "hackernews" hackernews-url)
+  (one--entry "hackernews" hackernews-url)
   (one--goto-first-item 6 8))
 
 ;;;###autoload
 (defun one-zhihu ()
   "The entry point of Zhihu Daily client."
   (interactive)
-  (one-entry "zhihu" zhihu-url)
+  (one--entry "zhihu" zhihu-url)
   (one--goto-first-item 3 8))
 
 ;;;###autoload
 (defun one-v2ex ()
   "The entry point of V2EX client."
   (interactive)
-  (one-entry "v2ex" v2ex-url)
+  (one--entry "v2ex" v2ex-url)
   (one--goto-first-item 3 8))
 
 ;;; UI Functions
 
-(defun one-create-link-in-buffer (title url)
+(defun one--create-link-in-buffer (title url)
   "Insert clickable string inside a buffer."
   (lexical-let ((title title)
                 (url url)
@@ -166,7 +166,7 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
       'keymap map
       'mouse-face 'highlight))))
 
-(defun one-space-fill (string n)
+(defun one--space-fill (string n)
   "Make sure that `STRING' is at least N characters long.
 
 And if it isn't, it adds SPACE-characters to the end."
@@ -174,12 +174,12 @@ And if it isn't, it adds SPACE-characters to the end."
     (setf string (concat string " ")))
   (identity string))
 
-(defun one-encoding (string)
+(defun one--encoding (string)
   "Encoding."
   (decode-coding-string
    (encode-coding-string string 'utf-8) 'utf-8))
 
-(defun one-format-results (news-source results)
+(defun one--format-results (news-source results)
   "Create the buffer to render all the info."
   (cond ((string= news-source "sbbs")
          (sbbs-format-results results))
@@ -200,10 +200,10 @@ And if it isn't, it adds SPACE-characters to the end."
   "Render a single post to the current buffer
 Add the post title as a link, and print the points and number of
 comments."
-  (princ (one-space-fill
+  (princ (one--space-fill
           (format "[%s]" (cdr (assoc 'read post))) 8))
-  (one-create-link-in-buffer
-   (one-encoding (cdr (assoc 'title post)))
+  (one--create-link-in-buffer
+   (one--encoding (cdr (assoc 'title post)))
    ;; TODO: use nForum
    (format "http://bbs.seu.edu.cn/bbscon.php?board=%s&id=%s"
            (cdr (assoc 'board post))
@@ -217,7 +217,7 @@ comments."
     (switch-to-buffer "*sbbs*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (one-create-link-in-buffer "SBBS -- 虎踞龙蟠 BBS" "http://bbs.seu.edu.cn" )
+    (one--create-link-in-buffer "SBBS -- 虎踞龙蟠 BBS" "http://bbs.seu.edu.cn" )
     (princ "
  ____  ____  ____ ____
 / ___|| __ )| __ ) ___|
@@ -243,12 +243,12 @@ comments."
   "Render a single post to the current buffer
 Add the post title as a link, and print the points and number of
 comments."
-  (princ (one-space-fill
+  (princ (one--space-fill
           (format "[%s]" (cdr (assoc 'points post))) 6))
-  (one-create-link-in-buffer
-   (one-encoding (cdr (assoc 'title post)))
-   (hackernews-link-of-url (one-encoding (cdr (assoc 'url post)))))
-  (one-create-link-in-buffer
+  (one--create-link-in-buffer
+   (one--encoding (cdr (assoc 'title post)))
+   (hackernews-link-of-url (one--encoding (cdr (assoc 'url post)))))
+  (one--create-link-in-buffer
    (format " (%d comments)" (cdr (assoc 'commentCount post)))
    (hackernews-comment-url (cdr (assoc 'id post))))
   (princ "\n"))
@@ -259,7 +259,7 @@ comments."
     (switch-to-buffer "*hackernews*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (one-create-link-in-buffer "Hacker News" "https://news.ycombinator.com")
+    (one--create-link-in-buffer "Hacker News" "https://news.ycombinator.com")
     (princ "
  _   _            _               _   _
 | | | | __ _  ___| | _____ _ __  | \\ | | _____      _____
@@ -275,9 +275,9 @@ comments."
   "Render a single post to the current buffer
 Add the post title as a link, and print the points and number of
 comments."
-  (princ (one-space-fill "¶" 3))
-  (one-create-link-in-buffer
-   (one-encoding (cdr (assoc 'title post)))
+  (princ (one--space-fill "¶" 3))
+  (one--create-link-in-buffer
+   (one--encoding (cdr (assoc 'title post)))
    (cdr (assoc 'share_url post)))
   (princ "\n"))
 
@@ -287,7 +287,7 @@ comments."
     (switch-to-buffer "*zhihu*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (one-create-link-in-buffer "ZhiHu Daily -- 知乎日报" "http://daily.zhihu.com")
+    (one--create-link-in-buffer "ZhiHu Daily -- 知乎日报" "http://daily.zhihu.com")
     (princ "
  ______     _ _   _
 |__  / |__ (_) | | |_   _
@@ -306,7 +306,7 @@ comments."
     (switch-to-buffer "*v2ex*")
     (setq font-lock-mode nil)
     (use-local-map nil)
-    (one-create-link-in-buffer "V2EX" "http://www.v2ex.com")
+    (one--create-link-in-buffer "V2EX" "http://www.v2ex.com")
     (princ "
 __     ______  _______  __
 \\ \\   / /___ \\| ____\\ \\/ /
@@ -317,16 +317,16 @@ __     ______  _______  __
     (let ((c (length results)))
       (dotimes (n c)
         (let ((item-nth (elt results n)))
-          (princ (one-space-fill "¶" 3))
-          (one-create-link-in-buffer
-           (one-encoding (cdr (assoc 'title item-nth)))
+          (princ (one--space-fill "¶" 3))
+          (one--create-link-in-buffer
+           (one--encoding (cdr (assoc 'title item-nth)))
            (cdr (assoc 'url item-nth)))
           (princ (format " (%s replies)" (cdr (assoc 'replies item-nth))))
           (princ "\n"))))))
 
 ;;; Retrieving and parsing
 
-(defun one-retrieve (url)
+(defun one-－retrieve (url)
   (let (json)
     (with-current-buffer (url-retrieve-synchronously url)
       (goto-char (point-min))
@@ -337,7 +337,7 @@ __     ______  _______  __
       (kill-buffer (current-buffer)))
     json))
 
-(defun one-parse (contents)
+(defun one--parse (contents)
   (json-read-from-string contents))
 
 (provide 'one)
