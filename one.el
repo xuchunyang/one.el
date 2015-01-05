@@ -101,12 +101,16 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 
 (defun one-entry (news-source url)
   "The entry point of every client."
-  (condition-case ex
-      (one-format-results
-       news-source
-       (one-parse (one-retrieve url)))
-    ('error
-     (message (format "Bad news, bro: %s" (car (cdr ex)))))))
+  (let ((progress-reporter
+         (make-progress-reporter (format "Fetching from %s..." news-source)
+                                 nil nil)))
+    (condition-case ex
+        (one-format-results
+         news-source
+         (one-parse (one-retrieve url)))
+      ('error
+       (message (format "Bad news, bro: %s" (car (cdr ex))))))
+    (progress-reporter-done progress-reporter)))
 
 (defun one--goto-first-item (x-pos y-pos)
   "Move cursor to the first item, denoted by (X-POS, Y-POS)."
