@@ -34,3 +34,7 @@ i.e.
 - [[http://api.ihackernews.com/][Hacker News API]]
 - [[https://www.v2ex.com/p/7v9TEc53][V2EX API 接口]]
 - [[http://bbs.seu.edu.cn/api-documentation/][虎踞龙蟠BBS API]]
+
+* Todos
+- [ ] Update screenshots
+- [ ] Improve docstrings and comments
