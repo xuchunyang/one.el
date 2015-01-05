@@ -22,13 +22,13 @@ i.e.
 
 * ScreenShots
 - Hacker News ~one-hackernews~
-[[http://i.imgur.com/S8pe0IS.png]]
+[[http://i.imgur.com/rDjw746.png]]
 - Zhihu Dailiy ~one-zhihu~
-[[http://i.imgur.com/yOh1xGR.png]]
+[[http://i.imgur.com/MV60LZY.png]]
 - V2EX ~one-v2ex~
-[[http://i.imgur.com/6TK5OiM.png]]
+[[http://i.imgur.com/GyPmxIU.png]]
 - SBBS ~one-sbbs~
-[[http://i.imgur.com/LZ2nKY0.png]]
+[[http://i.imgur.com/b5kHgjm.png]]
 
 * Resources
 - [[http://api.ihackernews.com/][Hacker News API]]
