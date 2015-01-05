@@ -1,6 +1,6 @@
 ;;; one.el --- "M-x one-*" to read several news sources
 
-;; Copyright (C) 2014 Chunyang Xu <xuchunyang56@gmail.com>
+;; Copyright (C) 2014-2015 Chunyang Xu <xuchunyang56@gmail.com>
 
 ;; Author: Chunyang Xu
 ;; URL: https://github.com/xuchunyang/one.el
