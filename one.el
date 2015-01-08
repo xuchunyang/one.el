@@ -1,4 +1,4 @@
-;;; one.el --- "M-x one-*" to read several news sources
+;;; one.el --- "M-x one-*" to read several news sources  -*- coding: utf-8-unix; lexical-binding: t; -*-
 
 ;; Copyright (C) 2014-2015 Chunyang Xu <xuchunyang56@gmail.com>
 
@@ -39,7 +39,6 @@
 
 (require 'json)
 (require 'url)
-(eval-when-compile (require 'cl))
 
 (defgroup one nil
   "Read all news in one place"
@@ -150,7 +149,7 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 
 (defun one--create-link-in-buffer (title url)
   "Insert clickable string inside a buffer."
-  (lexical-let ((title title)
+  (let ((title title)
                 (url url)
                 (map (make-sparse-keymap)))
     (define-key map (kbd "<RET>")
@@ -233,7 +232,7 @@ comments."
   (format "https://news.ycombinator.com/item?id=%s" id))
 
 (defun hackernews-link-of-url (url)
-  (lexical-let ((url url)
+  (let ((url url)
 		(hackernews-item "/comments/"))
     (if (string-prefix-p hackernews-item url)
 	(hackernews-comment-url (substring url (length hackernews-item)))
