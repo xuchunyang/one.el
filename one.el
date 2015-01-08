@@ -4,6 +4,7 @@
 
 ;; Author: Chunyang Xu
 ;; URL: https://github.com/xuchunyang/one.el
+;; Package-Requires: ((emacs "24.1") (json "1.3"))
 ;; Keywords: hackernews, zhihu, v2ex, sbbs
 ;; Version: 0.1
 
@@ -93,19 +94,18 @@
   "Major mode to render results.
 \\{one-mode-map}.
 Turning on Text mode runs the normal hook `one-mode-hook'."
-  (setq header-line-format one-mode-header-line)
-  (message "one-mode: init"))
+  (setq header-line-format one-mode-header-line))
 
 ;;; Interactive functions
 
-(defun one--entry (news-source url)
+(defun one--entry (url)
   "The entry point of every client."
   (let ((progress-reporter
-         (make-progress-reporter (format "Fetching from %s..." news-source)
+         (make-progress-reporter (format "Fetching from %s..." url)
                                  nil nil)))
     (condition-case ex
         (one--format-results
-         news-source
+         url
          (one--parse (one-－retrieve url)))
       ('error
        (message (format "Bad news, bro: %s" (car (cdr ex))))))
@@ -121,28 +121,28 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 (defun one-sbbs ()
   "The entry point of SBBS client."
   (interactive)
-  (one--entry "sbbs" sbbs-url)
+  (one--entry sbbs-url)
   (one--goto-first-item 8 8))
 
 ;;;###autoload
 (defun one-hackernews ()
   "The entry point of Hacker News client."
   (interactive)
-  (one--entry "hackernews" hackernews-url)
+  (one--entry hackernews-url)
   (one--goto-first-item 6 8))
 
 ;;;###autoload
 (defun one-zhihu ()
   "The entry point of Zhihu Daily client."
   (interactive)
-  (one--entry "zhihu" zhihu-url)
+  (one--entry zhihu-url)
   (one--goto-first-item 3 8))
 
 ;;;###autoload
 (defun one-v2ex ()
   "The entry point of V2EX client."
   (interactive)
-  (one--entry "v2ex" v2ex-url)
+  (one--entry v2ex-url)
   (one--goto-first-item 3 8))
 
 ;;; UI Functions
@@ -178,17 +178,17 @@ And if it isn't, it adds SPACE-characters to the end."
   (decode-coding-string
    (encode-coding-string string 'utf-8) 'utf-8))
 
-(defun one--format-results (news-source results)
+(defun one--format-results (url results)
   "Create the buffer to render all the info."
-  (cond ((string= news-source "sbbs")
+  (cond ((string= url sbbs-url )
          (sbbs-format-results results))
-        ((string= news-source "hackernews")
+        ((string= url hackernews-url)
          (hackernews-format-results results))
-        ((string= news-source "zhihu")
+        ((string= url zhihu-url)
          (zhihu-format-results results))
-        ((string= news-source "v2ex")
+        ((string= url v2ex-url)
          (v2ex-format-results results))
-        (t (error (format "news-source %s is not implement yet" news-source))))
+        (t (error (format "url %s is not implement yet" url))))
   (unless (eq major-mode 'one-mode)
     (one-mode)))
 
