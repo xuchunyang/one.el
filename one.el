@@ -4,7 +4,7 @@
 
 ;; Author: Chunyang Xu
 ;; URL: https://github.com/xuchunyang/one.el
-;; Package-Requires: ((emacs "24.1") (json "1.3"))
+;; Package-Requires: ((emacs "24.1"))
 ;; Keywords: hackernews, zhihu, v2ex, sbbs
 ;; Version: 0.1
 
