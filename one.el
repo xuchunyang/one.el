@@ -1,4 +1,4 @@
-;;; one.el --- "M-x one-*" to read several news sources  -*- coding: utf-8-unix; lexical-binding: t; -*-
+;;; one.el --- "M-x one-*" to read several news sources  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014-2015 Chunyang Xu <xuchunyang56@gmail.com>
 
@@ -66,7 +66,7 @@
 (defvar sbbs-url "http://bbs.seu.edu.cn/api/hot/topten.js"
   "The url to grab the list of news from SBBS.")
 
-(defvar one-mode-header-line
+(defconst one-mode-header-line
   '("    "
     (:propertize "n p" face mode-line-buffer-id)
     ": Navigate"
@@ -90,10 +90,11 @@
     map)
   "Keymap for `one-mode'.")
 
-(define-derived-mode one-mode fundamental-mode "one"
+(define-derived-mode one-mode nil "one"
   "Major mode to render results.
 \\{one-mode-map}.
 Turning on Text mode runs the normal hook `one-mode-hook'."
+  (hl-line-mode 1)
   (setq header-line-format one-mode-header-line))
 
 ;;; Interactive functions
@@ -340,5 +341,9 @@ __     ______  _______  __
   (json-read-from-string contents))
 
 (provide 'one)
+
+;; Local Variables:
+;; coding: utf-8
+;; End:
 
 ;;; one.el ends here
