@@ -118,12 +118,47 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
   (forward-line (1- y-pos))
   (forward-char x-pos))
 
+(define-derived-mode sbbs-mode tabulated-list-mode "SBBS"
+  "Major mode for viewing sbbs news."
+  (setq tabulated-list-format [("点击" 4 t)
+			       ("标题" 60 nil)
+			       ("回复"  4 t)])
+  (setq tabulated-list-padding 2)
+  (setq tabulated-list-sort-key (cons "回复" nil))
+  (tabulated-list-init-header))
+
+(defvar-local sbbs-json nil
+  "SBBS json content.")
+
+(defun assoc-recursive (alist &rest keys)
+  "Recursively find KEYs in ALIST."
+  (while keys
+    (setq alist (cdr (assoc (pop keys) alist))))
+  alist)
+
+(defun make-sbbs-entries ()
+  "Make entries for sbbs-mode."
+  (let ((index 1) (list nil))
+    (mapc (lambda (item)
+	    (push (list
+		   (number-to-string index)
+		   `[,(number-to-string (assoc-recursive item 'read))
+		     ,(assoc-recursive item 'title)
+		     ,(number-to-string (assoc-recursive item 'replies))])
+		  list))
+	  (cdr (assoc 'topics sbbs-json)))
+    (setq index (1+ index))
+    list))
+
 ;;;###autoload
 (defun one-sbbs ()
   "The entry point of SBBS client."
   (interactive)
-  (one--entry sbbs-url)
-  (one--goto-first-item 8 8))
+  (pop-to-buffer "*SBBS*" nil)
+  (sbbs-mode)
+  (setq-local sbbs-json (one--parse (one-－retrieve sbbs-url)))
+  (setq tabulated-list-entries #'make-sbbs-entries)
+  (tabulated-list-print t))
 
 ;;;###autoload
 (defun one-hackernews ()
