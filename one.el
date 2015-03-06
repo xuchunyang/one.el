@@ -121,8 +121,8 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
 (define-derived-mode sbbs-mode tabulated-list-mode "SBBS"
   "Major mode for viewing sbbs news."
   (setq tabulated-list-format [("点击" 4 t)
-			       ("标题" 60 nil)
-			       ("回复"  4 t)])
+                               ("标题" 60 nil)
+                               ("回复"  4 t)])
   (setq tabulated-list-padding 2)
   (setq tabulated-list-sort-key (cons "回复" nil))
   (tabulated-list-init-header))
@@ -140,13 +140,13 @@ Turning on Text mode runs the normal hook `one-mode-hook'."
   "Make entries for sbbs-mode."
   (let ((index 1) (list nil))
     (mapc (lambda (item)
-	    (push (list
-		   (number-to-string index)
-		   `[,(number-to-string (assoc-recursive item 'read))
-		     ,(assoc-recursive item 'title)
-		     ,(number-to-string (assoc-recursive item 'replies))])
-		  list))
-	  (cdr (assoc 'topics sbbs-json)))
+            (push (list
+                   (number-to-string index)
+                   `[,(number-to-string (assoc-recursive item 'read))
+                     ,(assoc-recursive item 'title)
+                     ,(number-to-string (assoc-recursive item 'replies))])
+                  list))
+          (cdr (assoc 'topics sbbs-json)))
     (setq index (1+ index))
     list))
 
@@ -260,7 +260,7 @@ comments."
  ___) | |_) | |_) |__) |
 |____/|____/|____/____/\n\n")
     (mapcar #'sbbs-render-post
-	    (cdr (assoc 'topics results)))))
+            (cdr (assoc 'topics results)))))
 
 ;;; Hacker News specific
 
@@ -269,9 +269,9 @@ comments."
 
 (defun hackernews-link-of-url (url)
   (let ((url url)
-		(hackernews-item "/comments/"))
+        (hackernews-item "/comments/"))
     (if (string-prefix-p hackernews-item url)
-	(hackernews-comment-url (substring url (length hackernews-item)))
+        (hackernews-comment-url (substring url (length hackernews-item)))
       url)))
 
 (defun hackernews-render-post (post)
@@ -331,7 +331,7 @@ comments."
 /____|_| |_|_|_| |_|\\__,_|\n\n")
 
     (mapcar #'zhihu-render-post
-	    (cdr (assoc 'news results)))))
+            (cdr (assoc 'news results)))))
 
 ;;; V2EX specific
 
@@ -379,6 +379,7 @@ __     ______  _______  __
 
 ;; Local Variables:
 ;; coding: utf-8
+;; indent-tabs-mode: nil
 ;; End:
 
 ;;; one.el ends here

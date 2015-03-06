@@ -88,3 +88,7 @@
 (provide 'helm-sbbs)
 
 ;;; helm-sbbs.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
